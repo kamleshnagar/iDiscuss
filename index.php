@@ -6,7 +6,7 @@ include('./partials/_header.php'); ?>
 
 
 
-<h2 class="text-center my-4">Welcome to <b class="text-success fs-2 fw-bolder">iDiscuss</b></h2>
+<h2 class="text-center my-4">Welcome to <a href="index.php" class="text-success text-decoration-none fs-2 fw-bolder">iDiscuss</a></h2>
 
 <!-- slider starts here -->
 <div class="container"  style="max-height:400px; object-fit:contain;">

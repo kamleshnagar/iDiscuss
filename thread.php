@@ -45,11 +45,11 @@ include('./partials/_header.php');
         $sql = "INSERT INTO `comments` (`comment_content`, `thread_id`, `comment_by`, `comment_time`) VALUES ('$comment_content', '$thread_id', '$author', current_timestamp())";
         $result = mysqli_query($conn, $sql);
         $showAlert = true;
-        echo "<script>
+        echo        "<script>
                         if (window.history.replaceState) {
                             window.history.replaceState(null, null, window.location.href);
                         }
-                  </script>";
+                     </script>";
         if ($showAlert) {
             echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                     <strong>Success!</strong> Your thread has been added! Please wait for  community to response.

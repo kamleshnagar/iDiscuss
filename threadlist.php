@@ -58,18 +58,18 @@ include('./partials/_header.php');
             $result = mysqli_query($conn, $sql);
             
             $showAlert = true;
-            
+             echo      "<script>
+                                if (window.history.replaceState) {
+                                    window.history.replaceState(null, null, window.location.href);
+                                }
+                        </script>";
             if ($showAlert) {
                 echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Success!</strong> Your thread has been added! Please wait for  community to response.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>';
 
-                echo "<script>
-                        if (window.history.replaceState) {
-                            window.history.replaceState(null, null, window.location.href);
-                        }
-                      </script>";
+               
                 
 
             }

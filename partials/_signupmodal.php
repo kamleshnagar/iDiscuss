@@ -3,28 +3,25 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="signupmodalLabel">Signup to iDiscuss</h5>
+                <h5 class="modal-title" id="signupmodalLabel">Signup to <a href="index.php" class="text-success text-decoration-none">iDiscuss</a></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form>
+            <form action="/forum/partials/_handleSignup.php" method="post">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+                        <label for="signup_email" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="signup_email" name="signup_email" aria-describedby="emailHelp">
                         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password">
+                        <label for="signup_password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="signup_password" name="signup_password">
                     </div>
                     <div class="mb-3">
-                        <label for="cpassword" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" id="cpassword" name="cpassword">
+                        <label for="signup_cpassword" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="signup_cpassword" name="signup_cpassword">
                     </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
+                    
                     <button type="submit" class="btn btn-success w-100">Submit</button>
                 </div>
                

@@ -1,5 +1,6 @@
 
 <?php
+session_start();
 include('_dbconnect.php');
 
 echo
@@ -66,20 +67,68 @@ echo
             <a class="nav-link" href="../../forum/about.php">Contact</a>
           </li>
         </ul>
-     
+        ';
 
-          <form class="d-flex">
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == "true") {
+  $user = $_SESSION['user_email'];
+  echo '<form class="d-flex">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-success" type="submit">Search</button>
-          </form>
+        </form>
+          <div class="text-light m-2">Welcome ' . $user . '</div>
+          <div class="mx-3">
+           <a class="text-decoration-none btn btn-outline-success m-1""  href="/forum/partials/_handleLogout.php">Logout</a>
+            
+          </div>';
+} else {
+  echo '<form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-success" type="submit">Search</button>
+        </form>
           <div class="mx-3">
             <button class="btn btn-outline-success m-1" data-bs-toggle="modal" data-bs-target="#loginmodal">Login</button>
             <button class="btn btn-outline-success m-1" data-bs-toggle="modal" data-bs-target="#signupmodal">Signup</button>
-          </div>
-      
-      </div>
-    </div>
-  </nav>';
+          </div>';
+}
+echo
+'</div>
+</div>
+</nav>';
 
 include('_loginmodal.php');
 include('_signupmodal.php');
+if (isset($_GET['signupsuccess']) && $_GET['signupsuccess'] == "true") {
+  echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Success!</strong> Your account has been created successfully. You can login now.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>';
+}
+if (isset($_GET['signupsuccess']) && $_GET['signupsuccess'] == "false") {
+  $msg = $_GET['error'];
+  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Error!</strong> ' . $msg . '
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>';
+}
+
+if (isset($_GET['loginsuccess']) && $_GET['loginsuccess'] == "true") {
+  $user = $_GET['user_email'];
+  echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Success!</strong> Welcome <b> ' . $user . '</b> you\'re successfully loggedin. 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>';
+}
+if (isset($_GET['loginsuccess']) && $_GET['loginsuccess'] == "false") {
+  $msg = $_GET['error'];
+  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Error!</strong> ' . $msg . '
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>';
+}
+if (isset($_GET['logout']) && $_GET['logout'] == "true") {
+  echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Success!</strong> Your account has been Logged out successfully. You can login now.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>';
+}
+?>
