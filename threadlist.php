@@ -58,12 +58,20 @@ include('./partials/_header.php');
             $result = mysqli_query($conn, $sql);
             
             $showAlert = true;
-
+            
             if ($showAlert) {
                 echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>Success!</strong> Your thread has been added! Please wait for  community to response.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>';
+                <strong>Success!</strong> Your thread has been added! Please wait for  community to response.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>';
+
+                echo "<script>
+                        if (window.history.replaceState) {
+                            window.history.replaceState(null, null, window.location.href);
+                        }
+                      </script>";
+                
+
             }
         } else
             $showError = true;
@@ -79,7 +87,7 @@ include('./partials/_header.php');
 
     <form class="" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
         <div class="mb-3">
-            <label for="thread_title" name="thread_title" class="form-label">Title</label>
+            <label for="thread_title" class="form-label">Title</label>
             <input type="text" class="form-control" id="thread_title" name="thread_title" aria-describedby="emailHelp">
             <div id="emailHelp" class="form-text">Keep your title short.</div>
         </div>
