@@ -41,10 +41,15 @@ include('./partials/_header.php');
     $method = $_SERVER['REQUEST_METHOD'];
     if ($method == 'POST') {
         $comment_content = $_POST['comment_content'];
-        $th_desc = $_POST['thread_desc'];
-        // $sql = "INSERT INTO `comments` (`thread_title`, `thread_desc`, `thread_cat_id`, `thread_user_id`, `timestamp`) VALUES ('$th_title', '$th_desc', '$id', '0', current_timestamp())";
-        // $result = mysqli_query($conn, $sql);
+        $author = "Kamlesh";
+        $sql = "INSERT INTO `comments` (`comment_content`, `thread_id`, `comment_by`, `comment_time`) VALUES ('$comment_content', '$thread_id', '$author', current_timestamp())";
+        $result = mysqli_query($conn, $sql);
         $showAlert = true;
+        echo "<script>
+                        if (window.history.replaceState) {
+                            window.history.replaceState(null, null, window.location.href);
+                        }
+                  </script>";
         if ($showAlert) {
             echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                     <strong>Success!</strong> Your thread has been added! Please wait for  community to response.
@@ -99,8 +104,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             </div>
         </div><hr>';
 
-    header("Location: " . $_SERVER['REQUEST_URI']);
-    exit();
+   
 }
 
 if ($noResult) {
