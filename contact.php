@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <textarea class="form-control" id="message" name="message" rows="5" placeholder="Write your message" required></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Send Message</button>
+                <button type="submit" class="btn btn-success">Send Message</button>
             </form>
         </div>
 

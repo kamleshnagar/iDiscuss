@@ -51,8 +51,8 @@ include('./partials/_header.php');
     $showAlert = false;
     $method = $_SERVER['REQUEST_METHOD'];
     if ($method == 'POST') {
-        $th_title = htmlspecialchars($conn, $_POST['thread_title']);
-        $th_desc = htmlspecialchars($conn, $_POST['thread_desc']);
+        $th_title = htmlspecialchars($_POST['thread_title']);
+        $th_desc = htmlspecialchars($_POST['thread_desc']);
         if (!empty($th_title) && !empty($th_desc)) {
 
             $sno = $_POST['sno'];
