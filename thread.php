@@ -42,7 +42,7 @@ $author = $row['user_email'];
     <h1 class="display-4"><b> <?php echo $thread_title ?></b></h1>
     <p class="lead"> <?php echo $thread_desc ?></p>
 
-    <p class="text-left"><small> Posted by: </small><b><span class="text-success"><?php echo $author ?></span></b></p>
+    <p class="text-left"><small> Posted by:  </small><em><span class="text-success fw-bolder"> <?php echo $author ?></span></em></p>
 </div>
 
 
@@ -53,7 +53,7 @@ $author = $row['user_email'];
     $showAlert = false;
     $method = $_SERVER['REQUEST_METHOD'];
     if ($method == 'POST') {
-        $comment_content = $_POST['comment_content'];
+        $comment_content = mysqli_real_escape_string($conn,$_POST['comment_content']);
         $sno = $_POST['sno'];
         if (!empty($comment_content)) {
 
@@ -133,8 +133,8 @@ echo '<div class="container my-4 p-3 bg-light text-dark rounded">
 while ($row = mysqli_fetch_assoc($result)) {
     $noResult = false;
     $comment_id = $row['comment_id'];
-    $comment_content = $row['comment_content'];
-    $comment_by = $row['comment_by'];
+    $comment_content = htmlspecialchars($row['comment_content']);
+    $comment_by = htmlspecialchars($row['comment_by']);
     $comment_time = $row['comment_time'];
 
 
@@ -151,10 +151,10 @@ while ($row = mysqli_fetch_assoc($result)) {
             <div class="media d-flex">
                 <img src="img/userdefault.png" class="m-3 rounded-circle img-fluide" alt="Generic placeholder image" style="width:50px; height:50px;">
                 <div class="media-body">
-                    <h5 class="my-4"><a href="thread.php?threadid=' . $thread_id . '" class="text-dark text-decoration-none "> <b>' . $user . '</b></a></h5>
+                    <div class="my-4 "><a href="thread.php?threadid=' . $thread_id . '" class="text-dark text-decoration-none fs-5 "> <b>' . $user . '</b></a>
+                    <span><em> at ' . $comment_time . '</em></span> </div>
                     
-                   ' . $comment_content . '
-                    <br><small class="mt-0 "><br>At ' . $comment_time . ' </small>
+                   ' . $comment_content . '<small class="mt-0 "></small>
                 </div>
             </div>
         </div><hr>';

@@ -6,8 +6,8 @@ $showError = "false";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     include '_dbconnect.php';
-    $email = $_POST['login_email'];
-    $pass = $_POST['login_pass'];
+    $email = mysqli_real_escape_string($conn,$_POST['login_email']);
+    $pass = mysqli_real_escape_string($conn, $_POST['login_pass']);
 
     $redirect = isset($_POST['redirect_to']) ? $_POST['redirect_to'] : '/forum/index.php';
     $separator = (parse_url($redirect, PHP_URL_QUERY)) ? '&' : '?';
@@ -28,22 +28,22 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 
                 echo
 
-                header("location:" . $redirect . $separator . "&logout=false&loginsuccess=true&user_email=" . $email);
+                header("location:" . $redirect . $separator . "loginsuccess=true&user_email=" . $email);
 
                 exit();
             } else {
                 $showError = "Please enter valid email or password";
-                header("location:" . $redirect . $separator . "logout=false&loginsuccess=false&error=$showError");
+                header("location:" . $redirect . $separator . "loginsuccess=false&error=$showError");
                 exit();
             }
         } else {
             $showError = "User not found. Please sign up before logging in.";
-            header("location:" . $redirect . $separator . "logout=false&loginsuccess=false&error=$showError");
+            header("location:" . $redirect . $separator . "loginsuccess=false&error=$showError");
             exit();
         }
     } else {
         $showError = "Fill all the required fields.";
-        header("location:" . $redirect . $separator . "logout=false&loginsuccess=false&error=$showError");
+        header("location:" . $redirect . $separator . "loginsuccess=false&error=$showError");
         exit();
     }
 }

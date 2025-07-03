@@ -104,9 +104,9 @@ if (isset($_GET['signupsuccess']) && $_GET['signupsuccess'] == "true") {
 </div>';
 }
 if (isset($_GET['signupsuccess']) && $_GET['signupsuccess'] == "false") {
-  $msg = $_GET['error'];
+  $msg = ($_GET['error']);
   echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-  <strong>Error!</strong> ' . $msg . '
+  <strong>Error!</strong> ' . htmlspecialchars($msg) . '
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>';
 }
@@ -114,22 +114,23 @@ if (isset($_GET['signupsuccess']) && $_GET['signupsuccess'] == "false") {
 if (isset($_GET['loginsuccess']) && $_GET['loginsuccess'] == "true") {
   $user = $_GET['user_email'];
   echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-  <strong>Success!</strong> Welcome <b> ' . $user . '</b> you\'re successfully loggedin. 
+  <strong>Success!</strong> Welcome <b> ' . htmlspecialchars($user) . '</b> you\'re successfully loggedin. 
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>';
 }
 if (isset($_GET['loginsuccess']) && $_GET['loginsuccess'] == "false") {
   $msg = $_GET['error'];
   echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-  <strong>Error!</strong> ' . $msg . '
+  <strong>Error!</strong> ' . htmlspecialchars($msg) . '
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>';
 }
-if (isset($_GET['logout']) && $_GET['logout'] == "true") {
+if (isset($_SESSION['logout']) && $_SESSION['logout'] == "true") {
   echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
   <strong>Success!</strong> Your account has been Logged out successfully. You can login now.
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>';
+unset($_SESSION['logout']);
 
 }
 ?>

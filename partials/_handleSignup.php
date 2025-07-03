@@ -4,9 +4,9 @@ $showError = "false";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     include '_dbconnect.php';
-    $user_email = $_POST['signup_email'];
-    $pass = $_POST['signup_password'];
-    $cpass = $_POST['signup_cpassword'];
+    $user_email = mysqli_real_escape_string($conn, $_POST['signup_email']);
+    $pass = mysqli_real_escape_string($conn, $_POST['signup_password']);
+    $cpass = mysqli_real_escape_string($conn, $_POST['signup_cpassword']);
     $redirect = isset($_POST['redirect_to']) ? $_POST['redirect_to'] : '/forum/index.php';
     $separator = (parse_url($redirect, PHP_URL_QUERY)) ? '&' : '?';
 
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $numrows = mysqli_num_rows($result);
         if ($numrows > 0) {
             $showError = "Email already exists.";
-            header("location:" . $redirect . $separator . "logout=false&signupsuccess=false&error=$showError");
+            header("location:" . $redirect . $separator . "signupsuccess=false&error=$showError");
             exit();
         } else {
             if ($pass == $cpass) {
@@ -27,18 +27,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 if ($result) {
                     $showAlert = true;
 
-                    header("location:" . $redirect . $separator . "logout=false&signupsuccess=true");
+                    header("location:" . $redirect . $separator . "signupsuccess=true");
                     exit();
                 }
             } else {
                 $showError = "Password do not match";
-                header("location:" . $redirect . $separator . "logout=false&signupsuccess=false&error=$showError");
+                header("location:" . $redirect . $separator . "signupsuccess=false&error=$showError");
                 exit();
             }
         }
     } else {
         $showError = "Fill all the required fields.";
-       header("location:" . $redirect . $separator . "logout=false&signupsuccess=false&error=$showError");
+       header("location:" . $redirect . $separator . "signupsuccess=false&error=$showError");
         exit();
     }
 }

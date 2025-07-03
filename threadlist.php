@@ -139,17 +139,17 @@ include('./partials/_header.php');
     while ($row = mysqli_fetch_assoc($result)) {
         $noResult = false;
         $thread_id = $row['thread_id'];
-        $thread_title = $row['thread_title'];
-        $thread_desc = $row['thread_desc'];
-        $thread_time = $row['timestamp'];
-        $thread_user_id = $row['thread_user_id'];
+        $thread_title =htmlspecialchars( $row['thread_title']);
+        $thread_desc = htmlspecialchars($row['thread_desc']);
+        $thread_time = htmlspecialchars($row['timestamp']);
+        $thread_user_id = htmlspecialchars($row['thread_user_id']);
 
         $sql2 = "SELECT user_email FROM `users` WHERE sno='$thread_user_id'";
         $result2 = mysqli_query($conn, $sql2);
         $row2 = mysqli_fetch_assoc($result2);
 
 
-        $user =  $row2['user_email'];
+        $user =  htmlspecialchars($row2['user_email']);
 
 
 
@@ -162,7 +162,7 @@ include('./partials/_header.php');
                 <div class="media-body">
                     <h5 class="mt-4"><a href="thread.php?threadid=' . $thread_id . '" class="text-light text-decoration-none">' . $thread_title . '</a></h5>
                     ' . $thread_desc . '
-                    <p class="mt-4"><small>Posted by: </small><a href="" class="text-success text-decoration-none fs-6">' . $user . '</a><small><br> At ' . $thread_time . '</small></p>
+                    <p class="mt-4"><em>Posted by: <a href="" class="text-success text-decoration-none fs-6">' . $user . '</a><br> At ' . $thread_time . '</em></p>
                 </div>
             </div>
         </div><hr>';
