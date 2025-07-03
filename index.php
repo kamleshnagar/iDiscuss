@@ -6,17 +6,17 @@ include('./partials/_header.php'); ?>
 
 
 
-<h2 class="text-center my-4">Welcome to <a href="index.php" class="text-success text-decoration-none fs-2 fw-bolder">iDiscuss</a></h2>
+<!-- <h2 class="text-center my-4">Welcome to <a href="index.php" class="text-success text-decoration-none fs-2 fw-bolder">iDiscuss</a></h2> -->
 
 <!-- slider starts here -->
-<div class="container"  style="max-height:400px; object-fit:contain;">
+<div class=" container-fluid mt-1"  style="max-height:400px; object-fit:contain;">
   <div id="carouselExampleIndicators" class="carousel slide bg-dark w-100" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
-    <div class="container p-0" >
+    <div class="container-fluid p-0" >
       <div class="carousel-inner w-100 " >
         <div class="carousel-item active">
           <img src="img/image1.png" class="d-block w-100  img-fluide" alt="..."  style="max-height:400px">

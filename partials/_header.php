@@ -27,7 +27,7 @@ box-sizing: border-box;
 
 <body>
 
-<div class="container-fluid">
+<div class="mb-5">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container-fluid">
       <a class="navbar-brand text-success fs-2 fw-bolder" href="../../forum">iDiscuss</a>
