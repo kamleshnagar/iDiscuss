@@ -64,7 +64,7 @@ echo
 '</ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../forum/about.php">Contact</a>
+            <a class="nav-link" href="../../forum/contact.php">Contact</a>
           </li>
         </ul>
         ';

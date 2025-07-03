@@ -17,10 +17,18 @@ mysqli_query($conn, $create_table_threads);
 
 
 
-// create table users
 $create_table_users = "CREATE TABLE IF NOT EXISTS `idiscuss`.`users` (`sno` INT(8) NOT NULL AUTO_INCREMENT , `user_email` VARCHAR(30) NOT NULL , `user_pass` VARCHAR(255) NOT NULL , `timestamp` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`sno`)) ENGINE = InnoDB;";
 mysqli_query ($conn, $create_table_users);
 
-
-
+$create_contact = "CREATE TABLE IF NOT EXISTS `contact_messages` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `user_id` INT DEFAULT NULL,
+    `name` VARCHAR(255) NOT NULL,
+    `email` VARCHAR(255) NOT NULL,
+    `subject` VARCHAR(255) NOT NULL,
+    `message` TEXT NOT NULL,
+    `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (`user_id`) REFERENCES `users`(`sno`) ON DELETE SET NULL
+) ENGINE=InnoDB;";
+mysqli_query($conn, $create_contact);
 ?>

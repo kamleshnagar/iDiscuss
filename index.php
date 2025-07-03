@@ -1,5 +1,4 @@
 <?php
-// header('location:/forum/index.php');
 $title = "iDiscuss";
 
 include('./partials/_dbconnect.php');

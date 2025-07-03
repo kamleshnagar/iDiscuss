@@ -4,9 +4,9 @@ $showError = "false";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     include '_dbconnect.php';
-    $user_email = mysqli_real_escape_string($conn, $_POST['signup_email']);
-    $pass = mysqli_real_escape_string($conn, $_POST['signup_password']);
-    $cpass = mysqli_real_escape_string($conn, $_POST['signup_cpassword']);
+    $user_email = htmlspecialchars($conn, $_POST['signup_email']);
+    $pass = htmlspecialchars($conn, $_POST['signup_password']);
+    $cpass = htmlspecialchars($conn, $_POST['signup_cpassword']);
     $redirect = isset($_POST['redirect_to']) ? $_POST['redirect_to'] : '/forum/index.php';
     $separator = (parse_url($redirect, PHP_URL_QUERY)) ? '&' : '?';
 

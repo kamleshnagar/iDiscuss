@@ -6,8 +6,8 @@ $showError = "false";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     include '_dbconnect.php';
-    $email = mysqli_real_escape_string($conn,$_POST['login_email']);
-    $pass = mysqli_real_escape_string($conn, $_POST['login_pass']);
+    $email = htmlspecialchars($conn,$_POST['login_email']);
+    $pass = htmlspecialchars($conn, $_POST['login_pass']);
 
     $redirect = isset($_POST['redirect_to']) ? $_POST['redirect_to'] : '/forum/index.php';
     $separator = (parse_url($redirect, PHP_URL_QUERY)) ? '&' : '?';

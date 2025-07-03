@@ -53,7 +53,7 @@ $author = $row['user_email'];
     $showAlert = false;
     $method = $_SERVER['REQUEST_METHOD'];
     if ($method == 'POST') {
-        $comment_content = mysqli_real_escape_string($conn,$_POST['comment_content']);
+        $comment_content = htmlspecialchars($conn,$_POST['comment_content']);
         $sno = $_POST['sno'];
         if (!empty($comment_content)) {
 
