@@ -24,7 +24,7 @@
                     
                     <button type="submit" class="btn btn-success w-100">Submit</button>
                 </div>
-               
+            <input type="hidden" name="redirect_to" value="<?php echo $_SERVER['REQUEST_URI']; ?>">   
             </form>
         </div>
     </div>

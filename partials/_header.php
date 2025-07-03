@@ -77,7 +77,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == "true") {
         </form>
           <div class="text-light m-2">Welcome ' . $user . '</div>
           <div class="mx-3">
-           <a class="text-decoration-none btn btn-outline-success m-1""  href="/forum/partials/_handleLogout.php">Logout</a>
+           <a role="button" class="text-decoration-none btn btn-outline-success m-1""  href="/forum/partials/_handleLogout.php">Logout</a>
             
           </div>';
 } else {
@@ -130,5 +130,6 @@ if (isset($_GET['logout']) && $_GET['logout'] == "true") {
   <strong>Success!</strong> Your account has been Logged out successfully. You can login now.
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>';
+
 }
 ?>

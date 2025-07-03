@@ -17,10 +17,11 @@
                         <label for="login_pass" class="form-label">Password</label>
                         <input type="password" class="form-control" id="login_pass" name="login_pass">
                     </div>
-                   
+                    <div id="emailHelp" class="form-text mb-3">Don't have an account. <a href="" class=" text-decoration-none text-success" data-bs-toggle="modal" data-bs-target="#signupmodal">Sign Up</a></div>
+
                     <button type="submit" class="btn btn-success w-100">Submit</button>
                 </div>
-
+                <input type="hidden" name="redirect_to" value="<?php echo $_SERVER['REQUEST_URI']; ?>">
             </form>
         </div>
     </div>

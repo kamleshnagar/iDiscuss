@@ -54,11 +54,14 @@ include('./partials/_header.php');
         $th_title = mysqli_real_escape_string($conn, $_POST['thread_title']);
         $th_desc = mysqli_real_escape_string($conn, $_POST['thread_desc']);
         if (!empty($th_title) && !empty($th_desc)) {
-            $sql = "INSERT INTO `threads` (`thread_title`, `thread_desc`, `thread_cat_id`, `thread_user_id`, `timestamp`) VALUES ('$th_title', '$th_desc', '$id', '0', current_timestamp())";
+
+            $sno = $_POST['sno'];
+
+            $sql = "INSERT INTO `threads` (`thread_title`, `thread_desc`, `thread_cat_id`, `thread_user_id`, `timestamp`) VALUES ('$th_title', '$th_desc', '$id', '$sno', current_timestamp())";
             $result = mysqli_query($conn, $sql);
-            
+
             $showAlert = true;
-             echo      "<script>
+            echo      "<script>
                                 if (window.history.replaceState) {
                                     window.history.replaceState(null, null, window.location.href);
                                 }
@@ -68,10 +71,6 @@ include('./partials/_header.php');
                 <strong>Success!</strong> Your thread has been added! Please wait for  community to response.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>';
-
-               
-                
-
             }
         } else
             $showError = true;
@@ -84,8 +83,11 @@ include('./partials/_header.php');
     }
 
     ?>
-
-    <form class="" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
+    <?php
+    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == "true") {
+        $user = $_SESSION['user_email'];
+        echo '
+  <form method="post" action="' . $_SERVER['REQUEST_URI'] . '">
         <div class="mb-3">
             <label for="thread_title" class="form-label">Title</label>
             <input type="text" class="form-control" id="thread_title" name="thread_title" aria-describedby="emailHelp">
@@ -94,61 +96,94 @@ include('./partials/_header.php');
         <div class="form-group">
             <label for="thread_desc" class="py-2">Ellaborate your concern</label>
             <textarea class="form-control" id="thread_desc" name="thread_desc" style="height: 100px"></textarea>
+             <input type="hidden" name="sno" value="' . $_SESSION['sno'] . '">
+            
         </div>
         <button type="submit" class="btn btn-success my-2">Submit</button>
     </form>
 </div>
+  ';
+    } else {
+        echo '
+        <form>
+                <div class="mb-3">
+                    <label for="thread_title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="thread_title" name="thread_title" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">Keep your title short.</div>
+                </div>
+                <div class="form-group">
+                    <label for="thread_desc" class="py-2">Ellaborate your concern</label>
+                    <textarea class="form-control" id="thread_desc" name="thread_desc" style="height: 100px"></textarea>
+                </div>
+        </form>
+                <div>
+                <button class="btn btn-success my-3" data-bs-toggle="modal" data-bs-target="#loginmodal">Submit</button>
+                </div>
+    </div>
+';
+    }
+    ?>
+
+
+    <?php
 
 
 
+    $sql = "SELECT * FROM `threads` WHERE thread_cat_id=$id";
+    $result = mysqli_query($conn, $sql);
+    $noResult = true;
 
-
-<?php
-
-
-
-$sql = "SELECT * FROM `threads` WHERE thread_cat_id=$id";
-$result = mysqli_query($conn, $sql);
-$noResult = true;
-
-echo '<div class="container my-4 p-3 bg-dark text-light">
+    echo '<div class="container my-4 p-3 bg-dark text-light">
         <h1 class="px-1">Browse Questions</h1>
         <hr>';
-while ($row = mysqli_fetch_assoc($result)) {
-    $noResult = false;
-    $thread_id = $row['thread_id'];
-    $thread_title = $row['thread_title'];
-    $thread_desc = $row['thread_desc'];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $noResult = false;
+        $thread_id = $row['thread_id'];
+        $thread_title = $row['thread_title'];
+        $thread_desc = $row['thread_desc'];
+        $thread_time = $row['timestamp'];
+        $thread_user_id = $row['thread_user_id'];
+
+        $sql2 = "SELECT user_email FROM `users` WHERE sno='$thread_user_id'";
+        $result2 = mysqli_query($conn, $sql2);
+        $row2 = mysqli_fetch_assoc($result2);
 
 
-    echo
-    '<div class="container  my-4 p-3 d-flex">
+        $user =  $row2['user_email'];
+
+
+
+
+
+        echo
+        '<div class="container  my-4 p-3 d-flex">
             <div class="media d-flex">
                 <img src="img/userdefault.png" class="m-3 mt-4 rounded-circle img-fluide" alt="Generic placeholder image" style="width:50px; height:50px;">
                 <div class="media-body">
                     <h5 class="mt-4"><a href="thread.php?threadid=' . $thread_id . '" class="text-light text-decoration-none">' . $thread_title . '</a></h5>
                     ' . $thread_desc . '
+                    <p class="mt-4"><small>Posted by: </small><a href="" class="text-success text-decoration-none fs-6">' . $user . '</a><small><br> At ' . $thread_time . '</small></p>
                 </div>
             </div>
         </div><hr>';
-}
+    }
 
-if ($noResult) {
-    echo '
+    if ($noResult) {
+        echo '
         <div class=" my-4 p-3">
             <h4>No threads found.</h4>
             <p>Be the first person to ask a <b><a href="#thread_title" class="text-decoration-none text-success">Question.</a></p>
          </div>
     </div>
     ';
-}
-
-
-?>
+    }
 
 
 
+    ?>
 
 
-<?php include('_footer.php'); ?>
 
+
+
+    <?php include('_footer.php'); ?>

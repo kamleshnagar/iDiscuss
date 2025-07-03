@@ -1,4 +1,5 @@
 <?php
+// header('location:/forum/index.php');
 $title = "iDiscuss";
 
 include('./partials/_dbconnect.php');
@@ -19,13 +20,13 @@ include('./partials/_header.php'); ?>
     <div class="container p-0" >
       <div class="carousel-inner w-100 " >
         <div class="carousel-item active">
-          <img src="img/image1.png" class="d-block w-100  img-fluide" alt="..."  style="max-height:300px">
+          <img src="img/image1.png" class="d-block w-100  img-fluide" alt="..."  style="max-height:400px">
         </div>
         <div class="carousel-item">
-          <img src="img/image2.png" class="d-block w-100 img-fluide" alt="..."  style="max-height:300px;">
+          <img src="img/image2.png" class="d-block w-100 img-fluide" alt="..."  style="max-height:400px;">
         </div>
         <div class="carousel-item">
-          <img src="img/image3.png" class="d-block  w-100 img-fluide" alt="..."  style="max-height:300px;">
+          <img src="img/image3.png" class="d-block  w-100 img-fluide" alt="..."  style="max-height:400px;">
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -56,7 +57,7 @@ include('./partials/_header.php'); ?>
         <img  style="min-height: 300px;" src="' . $img . '" class="card-img-top" alt="...">
         <div class="card-body" >
           <h5 class="card-title"><a href="threadlist.php?catid=' . $id . '" style="text-decoration:none; color:black">' . $cat . '</a></h5>
-          <p class="card-text">' . substr($desc, 0, 90) . '...</p>
+          <p class="card-text">' . substr($desc, 0, 100) . '...</p>
           <a href="threadlist.php?catid=' . $id . '" class="btn btn-primary" >View Threads</a>
         </div>  
       </div>
