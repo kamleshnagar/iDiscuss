@@ -6,6 +6,7 @@ echo
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
 </div>
+</div>
 </body>
 <footer class=" container-fluid my-3 p-2 w-100">
   <div class="container-fluid bg-dark text-light d-flex justify-content-center align-items-center" style="min-height:100px;">

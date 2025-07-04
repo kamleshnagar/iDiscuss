@@ -25,7 +25,7 @@ include('./partials/_header.php');
 
 
 
-<div class="container my-4 p-3 bg-dark text-light">
+<div class="container my-4 p-3 bg-dark text-light" style="border-radius: 10px;">
 
     <div class="jumbotron bg-dark text-light px-5 py-3">
         <h1 class="display-4"><b>Welcome to the <?php echo $catname ?> forums</b></h1>
@@ -41,7 +41,7 @@ include('./partials/_header.php');
 </div>
 
 
-<div class="container p-3">
+<div class="container p-3 shadow-lg bg-light "style="border: 2px solid #ccd2d9;  border-radius: 10px;">
     <h1>Star a Discussion</h1>
 
 
@@ -93,7 +93,7 @@ include('./partials/_header.php');
             <input type="text" class="form-control" id="thread_title" name="thread_title" aria-describedby="emailHelp">
             <div id="emailHelp" class="form-text">Keep your title short.</div>
         </div>
-        <div class="form-group">
+        <div class="form-group shadow-sm">
             <label for="thread_desc" class="py-2">Ellaborate your concern</label>
             <textarea class="form-control" id="thread_desc" name="thread_desc" style="height: 100px"></textarea>
              <input type="hidden" name="sno" value="' . $_SESSION['sno'] . '">
@@ -128,35 +128,35 @@ include('./partials/_header.php');
     <?php
 
 
+$sql = "SELECT * FROM `threads` WHERE thread_cat_id=$id";
+$result = mysqli_query($conn, $sql);
+$noResult = true;
 
-    $sql = "SELECT * FROM `threads` WHERE thread_cat_id=$id";
-    $result = mysqli_query($conn, $sql);
-    $noResult = true;
-
-    echo '<div class="container my-4 p-3 bg-dark text-light">
-        <h1 class="px-1">Browse Questions</h1>
-        <hr>';
-    while ($row = mysqli_fetch_assoc($result)) {
+echo '<div class="container my-4 p-3  text-light" style="border-radius: 10px; background-color:rgb(41, 45, 48);">
+<h1 class="px-1">Browse Questions</h1>
+<hr>';
+while ($row = mysqli_fetch_assoc($result)) {
         $noResult = false;
         $thread_id = $row['thread_id'];
         $thread_title =htmlspecialchars( $row['thread_title']);
         $thread_desc = htmlspecialchars($row['thread_desc']);
         $thread_time = htmlspecialchars($row['timestamp']);
-        $thread_user_id = htmlspecialchars($row['thread_user_id']);
-
+        $thread_user_id = ($row['thread_user_id']);
+        
         $sql2 = "SELECT user_email FROM `users` WHERE sno='$thread_user_id'";
+        
         $result2 = mysqli_query($conn, $sql2);
         $row2 = mysqli_fetch_assoc($result2);
 
 
-        $user =  htmlspecialchars($row2['user_email']);
+        $user =  ($row2['user_email']);
 
 
 
 
 
         echo
-        '<div class="container  my-4 p-3 d-flex">
+        '<div class="container  my-4 p-3 d-flex bg-dark " style="border-radius: 10px;"  >
             <div class="media d-flex">
                 <img src="img/userdefault.png" class="m-3 mt-4 rounded-circle img-fluide" alt="Generic placeholder image" style="width:50px; height:50px;">
                 <div class="media-body">

@@ -36,17 +36,17 @@ $row = mysqli_fetch_assoc($result);
 $author = $row['user_email'];
 
 ?>
+<div class="container-fluid bg-dark" style="border-radius:10px;">
+    <div class="container bg-dark text-light py-4 my-4 " >
 
-<div class="container bg-dark text-light py-4 my-4 ">
+        <h1 class="display-4"><b> <?php echo $thread_title ?></b></h1>
+        <p class="lead"> <?php echo $thread_desc ?></p>
 
-    <h1 class="display-4"><b> <?php echo $thread_title ?></b></h1>
-    <p class="lead"> <?php echo $thread_desc ?></p>
-
-    <p class="text-left"><small> Posted by:  </small><em><span class="text-success fw-bolder"> <?php echo $author ?></span></em></p>
+        <p class="text-left"><small> Posted by: </small><em><span class="text-success fw-bolder"> <?php echo $author ?></span></em></p>
+    </div>
 </div>
 
-
-<div class="container p-3">
+<div class="container p-3" style="border: 2px solid rgba(12, 173, 108, 0.39);  border-radius: 10px;">
     <h1>Post a comment</h1>
     <?php
 
@@ -125,9 +125,9 @@ $result = mysqli_query($conn, $sql);
 $noResult = true;
 
 
-echo '<div class="container my-4 p-3 bg-light text-dark rounded">
-        <div class="container">
-                 <h1>Discussions</h1>
+echo '<div class="container-fluid  my-4 p-3 bg-light text-dark " style="border-radius: 10px;">
+        <div class="container ">
+                 <h1 >Discussions</h1>
         </div>
         <hr>';
 while ($row = mysqli_fetch_assoc($result)) {
@@ -136,7 +136,6 @@ while ($row = mysqli_fetch_assoc($result)) {
     $comment_content = htmlspecialchars($row['comment_content']);
     $comment_by = htmlspecialchars($row['comment_by']);
     $comment_time = $row['comment_time'];
-
 
     $sql2 = "SELECT user_email FROM `users` WHERE sno='$comment_by'";
     $result2 = mysqli_query($conn, $sql2);
@@ -147,14 +146,14 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 
     echo
-    '<div class="container  my-4 p-3 d-flex ">
-            <div class="media d-flex">
+    '<div class="container text-light my-4 p-3 d-flex " style="border-radius: 10px; background-color:rgb(41, 45, 48);">
+            <div class="container media d-flex">
                 <img src="img/userdefault.png" class="m-3 rounded-circle img-fluide" alt="Generic placeholder image" style="width:50px; height:50px;">
-                <div class="media-body">
-                    <div class="my-4 "><a href="thread.php?threadid=' . $thread_id . '" class="text-dark text-decoration-none fs-5 "> <b>' . $user . '</b></a>
-                    <span><em> at ' . $comment_time . '</em></span> </div>
+                <div class="media-body container ">
+                    <div class="my-4  text-light d-flex  justify-content-between " ><a href="thread.php?threadid=' . $thread_id . '" class="text-success text-decoration-none fs-5 "> <b>' . $user . '</b></a>
+                    <span class="text-end "><em> at ' . $comment_time . '</em></span> </div>
                     
-                   ' . $comment_content . '<small class="mt-0 "></small>
+                   <p >' . $comment_content . '</p> 
                 </div>
             </div>
         </div><hr>';

@@ -31,4 +31,14 @@ $create_contact = "CREATE TABLE IF NOT EXISTS `contact_messages` (
     FOREIGN KEY (`user_id`) REFERENCES `users`(`sno`) ON DELETE SET NULL
 ) ENGINE=InnoDB;";
 mysqli_query($conn, $create_contact);
+
+
+
+// $table_fulltext = "ALTER TABLE `threads` ADD FULLTEXT (`thread_title`, `thread_desc`);";
+// mysqli_query ($conn, $table_fulltext);
+ 
+
+
+
+
 ?>

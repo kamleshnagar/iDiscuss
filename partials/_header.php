@@ -25,9 +25,9 @@ box-sizing: border-box;
 }
 </style>
 
-<body>
+<body >
 
-<div class="mb-5">
+<div class="mb-2 ">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container-fluid">
       <a class="navbar-brand text-success fs-2 fw-bolder" href="../../forum">iDiscuss</a>
@@ -71,8 +71,8 @@ echo
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == "true") {
   $user = $_SESSION['user_email'];
-  echo '<form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+  echo '<form class="d-flex" action="search.php" method="get">
+            <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-success" type="submit">Search</button>
         </form>
           <div class="text-light m-2">Welcome ' . $user . '</div>
@@ -94,7 +94,11 @@ echo
 '</div>
 </div>
 </nav>';
+?>
 
+<div class="container-fluid" style="min-height:100vh;">
+
+<?php
 include('_loginmodal.php');
 include('_signupmodal.php');
 if (isset($_GET['signupsuccess']) && $_GET['signupsuccess'] == "true") {
