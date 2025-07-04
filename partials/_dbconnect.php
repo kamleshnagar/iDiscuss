@@ -34,8 +34,14 @@ mysqli_query($conn, $create_contact);
 
 
 
-// $table_fulltext = "ALTER TABLE `threads` ADD FULLTEXT (`thread_title`, `thread_desc`);";
-// mysqli_query ($conn, $table_fulltext);
+$threads_table_fulltext = "ALTER TABLE `threads` ADD FULLTEXT (`thread_title`, `thread_desc`);";
+mysqli_query ($conn, $threads_table_fulltext);
+
+$users_table_fulltext = "ALTER TABLE `users` ADD FULLTEXT (`user_email`);";
+mysqli_query ($conn, $users_table_fulltext);
+
+$comments_table_fulltext = "ALTER TABLE `comments` ADD FULLTEXT (`comment_content`);";
+mysqli_query ($conn, $comments_table_fulltext);
  
 
 

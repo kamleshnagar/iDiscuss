@@ -186,4 +186,4 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 
 
-    <?php include('_footer.php'); ?>
+<?php include('./partials/_footer.php'); ?>
