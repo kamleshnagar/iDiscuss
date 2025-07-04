@@ -25,9 +25,9 @@ include('./partials/_header.php');
 
 
 
-<div class="container my-4 p-3 bg-dark text-light" style="border-radius: 10px;">
+<div class="container my-4 p-md-3 p-1 bg-dark text-light" style="border-radius: 10px;">
 
-    <div class="jumbotron bg-dark text-light px-5 py-3">
+    <div class="jumbotron bg-dark text-light px-md-5 px-3 py-3">
         <h1 class="display-4"><b>Welcome to the <?php echo $catname ?> forums</b></h1>
         <p class="lead"> <?php echo $catdesc ?></p>
         <hr class="my-4">
@@ -134,7 +134,7 @@ $noResult = true;
 
 echo '<div class="container my-4 p-3  text-light" style="border-radius: 10px; background-color:rgb(41, 45, 48);">
 <h1 class="px-1">Browse Questions</h1>
-<hr>';
+';
 while ($row = mysqli_fetch_assoc($result)) {
         $noResult = false;
         $thread_id = $row['thread_id'];
@@ -156,16 +156,18 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 
         echo
-        '<div class="container  my-4 p-3 d-flex bg-dark " style="border-radius: 10px;"  >
-            <div class="media d-flex">
-                <img src="img/userdefault.png" class="m-3 mt-4 rounded-circle img-fluide" alt="Generic placeholder image" style="width:50px; height:50px;">
+        '<hr><div class="container  my-md-4 my-2 py-3 bg-dark " style="border-radius: 10px;"  >
+            <div class="media mb-4 d-flex py-2 ">
+                <img src="img/userdefault.png" class=" rounded-circle img-fluide" alt="Generic placeholder image" style="width:50px; height:50px;">
+                
+                <h5 class="px-2"><a href="thread.php?threadid=' . $thread_id . '" class="text-light  text-decoration-none">' . $thread_title . '</a></h5>
+                
+            </div>
                 <div class="media-body">
-                    <h5 class="mt-4"><a href="thread.php?threadid=' . $thread_id . '" class="text-light text-decoration-none">' . $thread_title . '</a></h5>
                     ' . $thread_desc . '
                     <p class="mt-4"><em>Posted by: <a href="" class="text-success text-decoration-none fs-6">' . $user . '</a><br> At ' . $thread_time . '</em></p>
                 </div>
-            </div>
-        </div><hr>';
+        </div>';
     }
 
     if ($noResult) {

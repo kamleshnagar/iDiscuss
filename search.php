@@ -102,7 +102,7 @@ function showThread($row, $conn)
     <div class="result container p-4 bg-dark text-light rounded my-4">
         <h3><a href="' . $url . '" class="text-success text-decoration-none">' . $thread_title . '</a></h3>
         <p>' . $thread_desc . '</p>
-        <div class="d-flex justify-content-between mt-3">
+        <div class="d-md-flex justify-content-md-between mt-md-3">
             <p><em>Posted by: <span class="text-success fw-bolder">' . $user_email . '</span></em></p>
             <p><em>at ' . $thread_timestamp . '</em></p>
         </div>
@@ -111,6 +111,8 @@ function showThread($row, $conn)
 }
 ?>
 <?php
+
+// ---------------------- Function to display comments ----------------------
 function showComment($row, $row2, $conn)
 {
 

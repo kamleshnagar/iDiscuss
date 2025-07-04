@@ -129,7 +129,7 @@ echo '<div class="container-fluid  my-4 p-3 bg-light text-dark " style="border-r
         <div class="container ">
                  <h1 >Discussions</h1>
         </div>
-        <hr>';
+       ';
 while ($row = mysqli_fetch_assoc($result)) {
     $noResult = false;
     $comment_id = $row['comment_id'];
@@ -146,22 +146,25 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 
     echo
-    '<div class="container text-light my-4 p-3 d-flex " style="border-radius: 10px; background-color:rgb(41, 45, 48);">
-            <div class="container media d-flex">
-                <img src="img/userdefault.png" class="m-3 rounded-circle img-fluide" alt="Generic placeholder image" style="width:50px; height:50px;">
-                <div class="media-body container ">
-                    <div class="my-4  text-light d-flex  justify-content-between " ><a href="thread.php?threadid=' . $thread_id . '" class="text-success text-decoration-none fs-5 "> <b>' . $user . '</b></a>
-                    <span class="text-end "><em> at ' . $comment_time . '</em></span> </div>
-                    
-                   <p >' . $comment_content . '</p> 
-                </div>
+    '<hr><div class="container text-light my-md-4 p-3" style="border-radius: 10px; background-color:rgb(41, 45, 48);">
+            <div class="d-flex text-wrap my-2">
+                <img src="img/userdefault.png" class=" rounded-circle img-fluide" alt="Generic placeholder image" style="width:50px; height:50px;">
+                <div class="media-body container px-2 d-md-flex  justify-content-md-between ">
+                <a href="thread.php?threadid=' . $thread_id . '" class="text-success text-decoration-none fs-5 "> <b>' . $user . '</b></a>
+                <div class="text-start text-md-end "><em> at ' . $comment_time . '</em></div>
             </div>
-        </div><hr>';
+                  
+                    
+            </div>
+                <div >'
+                 . $comment_content . '
+                </div> 
+        </div>';
 }
 
 if ($noResult) {
     echo '
-        <div class=" my-4 p-3">
+        <div class=" my-md-4 p-3">
             <h4>No Comments found.</h4>
            
          </div>

@@ -1,12 +1,37 @@
+
+
+<?php
+// Turn off displaying errors to the user
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+error_reporting(0);
+
+// Enable error logging
+ini_set('log_errors', 1);
+
+// Define the path to the error log file
+ini_set('error_log', __DIR__ . '/logs/php-error.log');
+
+// Optional: create logs directory if it doesn't exist
+if (!file_exists(__DIR__ . '/logs')) {
+    mkdir(__DIR__ . '/logs', 0777, true);
+}
+?>
+
+
 <?php
 // Database connection file
 
-$servername = "localhost";
+$servername = "159.89.161.154";
 $username = "root";
-$password = "";
+$password = "kamlesh0095Nagar";
 $database = "idiscuss";
+$conn = mysqli_connect($servername, $username, $password, $database);
 
-$conn = mysqli_connect($servername, $username, $password, $database) or die("Connection failed----------------------->: " . mysqli_connect_error());
+if (!$conn) {
+    error_log("Database connection failed: " . mysqli_connect_error());
+    exit('Something went wrong. Please try again later.');
+}
 
 
 $create_table_catagories = "CREATE TABLE IF NOT EXISTS `idiscuss`.`categories` (`category_id` INT NOT NULL AUTO_INCREMENT , `category_name` VARCHAR(255) NOT NULL , `category_discription` VARCHAR(255) NOT NULL , `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,`image_url` VARCHAR(255) NULL , PRIMARY KEY (`category_id`)) ENGINE = InnoDB;";
@@ -34,16 +59,15 @@ mysqli_query($conn, $create_contact);
 
 
 
-$threads_table_fulltext = "ALTER TABLE `threads` ADD FULLTEXT (`thread_title`, `thread_desc`);";
-mysqli_query ($conn, $threads_table_fulltext);
+// $threads_table_fulltext = "ALTER TABLE `threads` ADD FULLTEXT (`thread_title`, `thread_desc`);";
+// mysqli_query ($conn, $threads_table_fulltext);
 
-$users_table_fulltext = "ALTER TABLE `users` ADD FULLTEXT (`user_email`);";
-mysqli_query ($conn, $users_table_fulltext);
+// $users_table_fulltext = "ALTER TABLE `users` ADD FULLTEXT (`user_email`);";
+// mysqli_query ($conn, $users_table_fulltext);
 
-$comments_table_fulltext = "ALTER TABLE `comments` ADD FULLTEXT (`comment_content`);";
-mysqli_query ($conn, $comments_table_fulltext);
+// $comments_table_fulltext = "ALTER TABLE `comments` ADD FULLTEXT (`comment_content`);";
+// mysqli_query ($conn, $comments_table_fulltext);
  
-
 
 
 

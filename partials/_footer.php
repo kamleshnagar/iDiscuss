@@ -10,7 +10,7 @@ echo
 </body>
 <footer class=" container-fluid my-3 p-2 w-100">
   <div class="container-fluid bg-dark text-light d-flex justify-content-center align-items-center" style="min-height:100px;">
-    <p class="text-center my-auto">Copyright <a class="text-decoration-none" href="../forum"> <b class="text-success fw-bolder">iDiscuss</b></a> Coding Forums 2021 | All rights reserved</p>
+    <p class="text-center my-auto">Copyright <a class="text-decoration-none" href="../forum"> <b class="text-success fw-bolder">iDiscuss</b></a> Coding Forums 2021 | <span class="all"> All rights reserved</p>
   </div>
 </footer>
 
